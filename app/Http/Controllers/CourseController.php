@@ -2,18 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Region;
-use App\Http\Requests\StoreRegionRequest;
-use App\Http\Requests\UpdateRegionRequest;
-use App\Repositories\RegionRepository;
-use App\Services\RegionService;
+use App\Models\Course;
+use App\Http\Requests\StoreCourseRequest;
+use App\Http\Requests\UpdateCourseRequest;
+use App\Services\CourseService;
 use Illuminate\Http\Request;
 
-class RegionController extends Controller
+class CourseController extends Controller
 {
-    public function __construct(protected RegionService $service){
-
-    }
+    public function __construct(protected CourseService $service){}
+   
     /**
      * Display a listing of the resource.
      */
@@ -21,7 +19,6 @@ class RegionController extends Controller
     {
         $data = $this->service->getAll();
         return response()->json($data);
-
     }
 
     /**
@@ -29,7 +26,7 @@ class RegionController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -37,23 +34,23 @@ class RegionController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $this->service->create($request);
+         $data = $this->service->getAll( $request);
         return response()->json($data);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Region $region)
+    public function show(Course $course)
     {
-        $data = $this->service->find($region->id);
+         $data = $this->service->find($course->id);
         return response()->json($data);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Region $region)
+    public function edit(Course $course)
     {
         //
     }
@@ -61,21 +58,18 @@ class RegionController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateRegionRequest $request, Region $region)
+    public function update( Course $course,Request $request)
     {
-        $data = $this->service->update($request, $region->id);
+         $data = $this->service->update($course->id ,$request);
         return response()->json($data);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Region $region)
+    public function destroy(Course $course)
     {
-        $data = $this->service->delete($region->id);
-        return response()->json([
-            'message' => 'Successfully deleted region.',
-            'data' => $data
-        ]);
+        $data = $this->service->delete($course->id);
+        return response()->json($data);
     }
 }

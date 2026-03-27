@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Region extends Model
+class Branch extends Model
 {
-    /** @use HasFactory<\Database\Factories\RegionFactory> */
+    /** @use HasFactory<\Database\Factories\BranchFactory> */
     use HasFactory;
     protected $fillable = [
-     'code',
-     'name'
+        'name',
+        'address',
+        'phone',
+        'email',
+        'status',
     ];
 }

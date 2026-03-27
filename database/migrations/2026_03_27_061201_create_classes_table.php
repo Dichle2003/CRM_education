@@ -11,11 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('regions', function (Blueprint $table) {
+        Schema::create('classes', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->comment('mã vùng');
             $table->string('name');
-            
+            $table->string('course_id');
+            $table->string('branch_id');
+            $table->string('teacher_id');
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->integer('max_student');
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }
@@ -25,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('regions');
+        Schema::dropIfExists('classes');
     }
 };

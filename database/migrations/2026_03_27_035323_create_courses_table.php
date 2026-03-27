@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('regions', function (Blueprint $table) {
+        Schema::create('courses', function (Blueprint $table) {
             $table->id();
-            $table->string('code')->comment('mã vùng');
-            $table->string('name');
-            
+            $table->string('name')->comment('tên khoá học');
+            $table->decimal('total_secctions');
+            $table->decimal('price')->comment('giá tiền khoá học');
+            $table->string('description')->comment('mô tả khoá học');
+            $table->string('status')->default('active');
             $table->timestamps();
         });
     }
@@ -25,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('regions');
+        Schema::dropIfExists('courses');
     }
 };
